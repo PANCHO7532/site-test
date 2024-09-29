@@ -1,6 +1,7 @@
+[build]
+  functions = "functions-build"
 [functions]
   external_node_modules = ["fastify"]
-  functions = "functions-build"
   node_bundler = "esbuild"
 [[redirects]]
   force = true
