@@ -1,10 +1,8 @@
 [build]
-  functions = "functions-build"
-[functions]
-  external_node_modules = ["fastify"]
-  node_bundler = "esbuild"
-[[redirects]]
-  force = true
-  from = "/*"
-  status = 200
-  to = "/.netlify/functions/server/:splat"
+  # This will be run the site build
+  command = "npm run build:functions"
+  # This is the directory is publishing to netlify's CDN
+  # and this is directory of your front of your app
+  # publish = "build"
+  # functions build directory
+  functions = "functions-build" # always appends `-build` folder to your `functions` folder for builds
