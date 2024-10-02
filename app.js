@@ -8,10 +8,12 @@ fastify.register(require("./routes"));
 }*/
 //module.exports = () => { return fastify; };
 //
+console.log(process.env);
 if(process.env.NETLIFY || process.env.NETLIFY_LOCAL) {
-    exports.handler = require("serverless-http")(fastify);
+    
 } else {
     fastify.listen({port: 3000, host: "0.0.0.0"}, async() => { console.log("ready"); });
 }
+exports.handler = require("serverless-http")(fastify);
 //console.log(require);
 //console.log(require.main);
