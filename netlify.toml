@@ -1,5 +1,6 @@
 [build]
   functions = "."
+  command = "echo test"
 [[redirects]]
   force = true
   from = "/*"
