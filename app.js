@@ -18,6 +18,8 @@ fastify.register(require("@fastify/view"), {
         pretty: true
     }
 });
+console.log(process.env);
+console.log(require("fs").readdirSync(__dirname));
 fastify.register(require(path.join(__dirname, "routes/asd")));
 /*if(require.main != "module") {
     
