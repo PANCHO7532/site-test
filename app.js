@@ -2,6 +2,7 @@
 const path = require("path");
 const pug = require("pug");
 const fastify = require("fastify")(/*{logger: true}*/);
+const SERVER_PORT = process.env.PORT || 3000;
 fastify.register(require("@fastify/static"), {
     root: path.join(__dirname, 'public'),
     prefix: "/public/",
@@ -27,6 +28,7 @@ fastify.register(require("./routes/asd"));
 //
 console.log(process.env);
 if(process.env.AWS_LAMBDA_FUNCTION_VERSION || process.env.NETLIFY_LOCAL) {
+    // serverless
     exports.handler = awsLambda(fastify, {binaryMimeTypes: [
         "application/octet-stream",
         "image/png",
@@ -40,8 +42,9 @@ if(process.env.AWS_LAMBDA_FUNCTION_VERSION || process.env.NETLIFY_LOCAL) {
     //exports.handler = require("serverless-http")(fastify);
     //module.exports = () => { return fastify; };
 } else {
-    fastify.listen({port: 3000, host: "0.0.0.0"}, async() => { console.log("ready"); });
+    fastify.listen({port: SERVER_PORT, host: "0.0.0.0"}, async() => { console.log("ready"); });
 }
+module.exports = fastify;
 //exports.handler = require("serverless-http")(fastify);
 
 //console.log(require);
