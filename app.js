@@ -44,7 +44,11 @@ if(process.env.AWS_LAMBDA_FUNCTION_VERSION || process.env.NETLIFY_LOCAL) {
 } else {
     fastify.listen({port: SERVER_PORT, host: "0.0.0.0"}, async() => { console.log("ready"); });
 }
-module.exports = fastify;
+//module.exports = fastify;
+export default async (req, res) => {
+    await fastify.ready();
+    fastify.server.emit("request", req, res);
+};
 //exports.handler = require("serverless-http")(fastify);
 
 //console.log(require);
