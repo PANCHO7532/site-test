@@ -2,6 +2,8 @@
   functions = "."
   command = "echo Setting up..."
   environment = { SERVERLESS = "1" }
+[functions]
+  included_files = ["views/*", "public/*"]
 [[redirects]]
   force = true
   from = "/*"

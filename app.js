@@ -25,7 +25,7 @@ fastify.register(require("./routes/asd"));
 }*/
 //
 //
-//console.log(process.env);
+console.log(process.env);
 if(true) {
     exports.handler = awsLambda(fastify, {binaryMimeTypes: [
         "application/octet-stream",
