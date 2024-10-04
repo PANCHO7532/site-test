@@ -19,6 +19,7 @@ fastify.register(require("@fastify/view"), {
     }
 });
 //console.log(process.env);
+console.log(require("fs").readdirSync(path.join(__dirname, ".")));
 console.log(require("fs").readdirSync(path.join(__dirname, "routes")));
 fastify.register(require(path.join(__dirname, "routes/asd")));
 /*if(require.main != "module") {
