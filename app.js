@@ -19,7 +19,7 @@ fastify.register(require("@fastify/view"), {
     }
 });
 //console.log(process.env);
-console.log(require("fs").readdirSync(__dirname));
+console.log(require("fs").readdirSync(path.join(__dirname, "routes")));
 fastify.register(require(path.join(__dirname, "routes/asd")));
 /*if(require.main != "module") {
     
@@ -31,6 +31,7 @@ fastify.register(require(path.join(__dirname, "routes/asd")));
 //console.log(process.env);
 if(process.env.AWS_LAMBDA_FUNCTION_VERSION || process.env.NETLIFY_LOCAL) {
     // serverless
+    console.log("exporting serverless handler");
     exports.handler = awsLambda(fastify, {binaryMimeTypes: [
         "application/octet-stream",
         "image/png",
@@ -44,8 +45,10 @@ if(process.env.AWS_LAMBDA_FUNCTION_VERSION || process.env.NETLIFY_LOCAL) {
     //exports.handler = require("serverless-http")(fastify);
     //module.exports = () => { return fastify; };
 } else if(require.main == "module") {
+    console.log("exporting entire fastify instance");
     module.exports = fastify;
 } else {
+    console.log("beginning to listen for connections");
     fastify.listen({port: SERVER_PORT, host: "0.0.0.0"}, async() => { console.log("ready"); });
 }
 //module.exports = fastify;
