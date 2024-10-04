@@ -1,7 +1,7 @@
 [build]
   functions = "."
   command = "echo Setting up..."
-  environment = { SERVERLESS = 1 }
+  environment = { SERVERLESS = "1" }
 [[redirects]]
   force = true
   from = "/*"
