@@ -1,9 +1,9 @@
 [build]
   functions = "."
   command = "echo Setting up..."
-  environment = { SERVERLESS = "1" }
 [functions]
   included_files = ["views/*", "public/*"]
+  environment = { SERVERLESS = "1" }
 [[redirects]]
   force = true
   from = "/*"
