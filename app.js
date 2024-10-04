@@ -18,7 +18,7 @@ fastify.register(require("@fastify/view"), {
         pretty: true
     }
 });
-fastify.register(require("./routes/asd"));
+fastify.register(require(path.join(__dirname, "routes/asd")));
 /*if(require.main != "module") {
     
 } else {
