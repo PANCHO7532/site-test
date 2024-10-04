@@ -12,7 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "@fastify/aws-lambda": "^5.0.0",
+    "@fastify/static": "^8.0.1",
+    "@fastify/view": "^10.0.1",
     "fastify": "^5.0.0",
+    "pug": "^3.0.3",
     "serverless-http": "^3.2.0"
   },
   "devDependencies": {
