@@ -18,7 +18,7 @@ fastify.register(require("@fastify/view"), {
         pretty: true
     }
 });
-console.log(process.env);
+//console.log(process.env);
 console.log(require("fs").readdirSync(__dirname));
 fastify.register(require(path.join(__dirname, "routes/asd")));
 /*if(require.main != "module") {
@@ -28,7 +28,7 @@ fastify.register(require(path.join(__dirname, "routes/asd")));
 }*/
 //
 //
-console.log(process.env);
+//console.log(process.env);
 if(process.env.AWS_LAMBDA_FUNCTION_VERSION || process.env.NETLIFY_LOCAL) {
     // serverless
     exports.handler = awsLambda(fastify, {binaryMimeTypes: [
