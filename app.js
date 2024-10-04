@@ -26,7 +26,7 @@ fastify.register(require("./routes/asd"));
 //
 //
 //console.log(process.env);
-if(process.env.SERVERLESS == "1" || process.env.NETLIFY_LOCAL) {
+if(true) {
     exports.handler = awsLambda(fastify, {binaryMimeTypes: [
         "application/octet-stream",
         "image/png",
