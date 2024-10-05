@@ -19,7 +19,8 @@ fastify.register(require("@fastify/view"), {
 });
 console.log("__dirname: " + path.join(__dirname, "routes/asd"));
 console.log("process.cwd: " + path.join(process.cwd(), "routes/asd"));
-console.log(require("fs").readdirSync(path.join(process.cwd(), "routes/asd")));
+console.log(require("fs").readdirSync(process.cwd()));
+console.log(require("fs").readdirSync(path.join(process.cwd(), "routes")));
 fastify.register(require(path.join(process.cwd(), "routes/asd")));
 //console.log(process.env);
 if((process.env.AWS_LAMBDA_FUNCTION_VERSION || process.env.NETLIFY_LOCAL) && (!process.env.VERCEL && !process.env.__VERCEL_DEV_RUNNING)) {
