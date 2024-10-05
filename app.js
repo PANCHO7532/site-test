@@ -12,16 +12,16 @@ fastify.register(require("@fastify/static"), {
 const awsLambda = require("@fastify/aws-lambda");
 fastify.register(require("@fastify/view"), {
     engine: { pug },
-    root: path.join(__dirname, "views"),
+    root: path.join(process.cwd(), "views"),
     propertyName: "render",
     options: {
         pretty: true
     }
 });
 //console.log(process.env);
-console.log(require("fs").readdirSync(path.join(__dirname, ".")));
-console.log(require("fs").readdirSync(path.join(__dirname, "routes")));
-fastify.register(require(path.join(__dirname, "routes/asd")));
+console.log(require("fs").readdirSync(path.join(process.cwd(), ".")));
+console.log(require("fs").readdirSync(path.join(process.cwd(), "routes")));
+fastify.register(require(path.join(process.cwd(), "routes/asd")));
 /*if(require.main != "module") {
     
 } else {
