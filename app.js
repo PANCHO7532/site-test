@@ -35,7 +35,7 @@ if(process.env.AWS_LAMBDA_FUNCTION_VERSION || process.env.NETLIFY_LOCAL) {
     console.log("exporting serverless handler");
     if(process.env.VERCEL) {
         console.log("exporting handler for vercel");
-        exports.handler = async function(req, res) {
+        export default async function handler(req, res) {
             await fastify.ready();
             fastify.server.emit("request", req, res);
         }
