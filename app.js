@@ -33,16 +33,24 @@ fastify.register(require(path.join(__dirname, "routes/asd")));
 if(process.env.AWS_LAMBDA_FUNCTION_VERSION || process.env.NETLIFY_LOCAL) {
     // serverless
     console.log("exporting serverless handler");
-    exports.handler = awsLambda(fastify, {binaryMimeTypes: [
-        "application/octet-stream",
-        "image/png",
-        "audio/mp3",
-        "audio/mpeg",
-        "video/mp4",
-        "application/pdf",
-        "application/json",
-        "text/plain"
-    ]});
+    if(process.env.VERCEL) {
+        exports.handler = async function(req, res) {
+            await fastify.ready();
+            fastify.server.emit("request", req, res);
+        }
+    } else {
+        exports.handler = awsLambda(fastify, {binaryMimeTypes: [
+            "application/octet-stream",
+            "image/png",
+            "audio/mp3",
+            "audio/mpeg",
+            "video/mp4",
+            "application/pdf",
+            "application/json",
+            "text/plain"
+        ]});
+    }
+    
     //exports.handler = require("serverless-http")(fastify);
     //module.exports = () => { return fastify; };
 } else if(require.main == "module") {
