@@ -34,11 +34,13 @@ if(process.env.AWS_LAMBDA_FUNCTION_VERSION || process.env.NETLIFY_LOCAL) {
     // serverless
     console.log("exporting serverless handler");
     if(process.env.VERCEL) {
+        console.log("exporting handler for vercel");
         exports.handler = async function(req, res) {
             await fastify.ready();
             fastify.server.emit("request", req, res);
         }
     } else {
+        console.log("exporting generic lambda handler");
         exports.handler = awsLambda(fastify, {binaryMimeTypes: [
             "application/octet-stream",
             "image/png",
