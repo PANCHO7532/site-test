@@ -8,7 +8,6 @@ fastify.register(require("@fastify/static"), {
     prefix: "/public/",
     decorateReply: false
 });
-//console.log(path.join(__dirname, 'public'));
 const awsLambda = require("@fastify/aws-lambda");
 fastify.register(require("@fastify/view"), {
     engine: { pug },
@@ -18,57 +17,22 @@ fastify.register(require("@fastify/view"), {
         pretty: true
     }
 });
-//console.log(process.env);
-console.log(require("fs").readdirSync(path.join(process.cwd(), ".")));
-console.log(require("fs").readdirSync(path.join(process.cwd(), "routes")));
 fastify.register(require(path.join(process.cwd(), "routes/asd")));
-/*if(require.main != "module") {
-    
-} else {
-    
-}*/
-//
-//
-//console.log(process.env);
-export default async function handler(req, res) {
-    await fastify.ready();
-    fastify.server.emit("request", req, res);
-}
-if(process.env.AWS_LAMBDA_FUNCTION_VERSION || process.env.NETLIFY_LOCAL) {
-    // serverless
-    console.log("exporting serverless handler");
-    if(process.env.VERCEL) {
-        console.log("exporting handler for vercel");
-        
-    } else {
-        console.log("exporting generic lambda handler");
-        exports.handler = awsLambda(fastify, {binaryMimeTypes: [
-            "application/octet-stream",
-            "image/png",
-            "audio/mp3",
-            "audio/mpeg",
-            "video/mp4",
-            "application/pdf",
-            "application/json",
-            "text/plain"
-        ]});
-    }
-    
-    //exports.handler = require("serverless-http")(fastify);
-    //module.exports = () => { return fastify; };
-} else if(require.main == "module") {
-    console.log("exporting entire fastify instance");
+if((process.env.AWS_LAMBDA_FUNCTION_VERSION || process.env.NETLIFY_LOCAL) && (!process.env.VERCEL || !process.env.__VERCEL_DEV_RUNNING)) {
+    // lambda style serverless
+    exports.handler = awsLambda(fastify, {binaryMimeTypes: [
+        "application/octet-stream",
+        "image/png",
+        "audio/mp3",
+        "audio/mpeg",
+        "video/mp4",
+        "application/pdf",
+        "application/json",
+        "text/plain"
+    ]});
+} else if(process.env.VERCEL || process.env.__VERCEL_DEV_RUNNING) {
     module.exports = fastify;
 } else {
     console.log("beginning to listen for connections");
     fastify.listen({port: SERVER_PORT, host: "0.0.0.0"}, async() => { console.log("ready"); });
 }
-//module.exports = fastify;
-//export default async function handler (req, res) {
-//    await fastify.ready();
-//    fastify.server.emit("request", req, res);
-//};
-//exports.handler = require("serverless-http")(fastify);
-
-//console.log(require);
-//console.log(require.main);

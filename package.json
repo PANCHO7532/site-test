@@ -19,6 +19,7 @@
     "serverless-http": "^3.2.0"
   },
   "devDependencies": {
-    "netlify-cli": "^17.36.2"
+    "netlify-cli": "^17.36.2",
+    "vercel": "^37.6.1"
   }
 }
