@@ -19,7 +19,7 @@ fastify.register(require("@fastify/view"), {
 });
 fastify.register(require(path.join(process.cwd(), "routes/asd")));
 //console.log(process.env);
-if((process.env.AWS_LAMBDA_FUNCTION_VERSION || process.env.NETLIFY_LOCAL) && (!process.env.VERCEL || !process.env.__VERCEL_DEV_RUNNING)) {
+if((process.env.AWS_LAMBDA_FUNCTION_VERSION || process.env.NETLIFY_LOCAL) && (!process.env.VERCEL && !process.env.__VERCEL_DEV_RUNNING)) {
     // lambda style serverless
     console.log("lambda serverless");
     exports.handler = awsLambda(fastify, {binaryMimeTypes: [
