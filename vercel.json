@@ -1,10 +1,5 @@
 {
     "version": 2,
-    "functions": {
-        "api/vercel-serverless.js": {
-            "includeFiles": "+(controllers|public|views)/**"
-        }
-    },
     "rewrites": [
         {
             "source": "/(.*)",
