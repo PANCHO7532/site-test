@@ -2,7 +2,7 @@
     "version": 2,
     "functions": {
         "api/vercel-serverless.js": {
-            "includeFiles": "(controllers|public|routes|views)/**"
+            "includeFiles": "+(controllers|public|routes|views)/**"
         }
     },
     "rewrites": [
