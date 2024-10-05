@@ -18,8 +18,10 @@ fastify.register(require("@fastify/view"), {
     }
 });
 fastify.register(require(path.join(process.cwd(), "routes/asd")));
+//console.log(process.env);
 if((process.env.AWS_LAMBDA_FUNCTION_VERSION || process.env.NETLIFY_LOCAL) && (!process.env.VERCEL || !process.env.__VERCEL_DEV_RUNNING)) {
     // lambda style serverless
+    console.log("lambda serverless");
     exports.handler = awsLambda(fastify, {binaryMimeTypes: [
         "application/octet-stream",
         "image/png",
@@ -31,6 +33,7 @@ if((process.env.AWS_LAMBDA_FUNCTION_VERSION || process.env.NETLIFY_LOCAL) && (!p
         "text/plain"
     ]});
 } else if(process.env.VERCEL || process.env.__VERCEL_DEV_RUNNING) {
+    console.log("vercel serverless");
     module.exports = fastify;
 } else {
     console.log("beginning to listen for connections");
