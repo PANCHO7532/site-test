@@ -2,7 +2,7 @@
   functions = "."
   command = "echo Setting up..."
 [functions]
-  included_files = ["views/*", "public/*"]
+  included_files = ["controllers/*", "routes/*", "views/*", "public/*"]
 [[redirects]]
   force = true
   from = "/*"
