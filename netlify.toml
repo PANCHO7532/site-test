@@ -1,5 +1,5 @@
 [build]
-  functions = "."
+  functions = "./aws/lambda"
   command = "echo Setting up..."
 [functions]
   included_files = ["controllers/*", "routes/*", "views/*", "public/*"]
@@ -7,4 +7,4 @@
   force = true
   from = "/*"
   status = 200
-  to = "/.netlify/functions/app/:splat"
+  to = "/.netlify/functions/serverless/:splat"
